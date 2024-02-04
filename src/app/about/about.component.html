@@ -1,0 +1,49 @@
+<!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex flex-column justify-content-center align-items-center">
+    <div class="container text-center text-md-left" data-aos="fade-up">
+
+        <!-- En tu archivo de plantilla del componente -->
+        <div class="centered-table">
+            <div *ngIf="loading">Cargando productos...</div>
+            <div *ngIf="error">Error al obtener productos.</div>
+        
+            <table *ngIf="!loading && !error">
+                <thead>
+                    <tr>
+                        <th><input type="checkbox" (change)="selectAll($event)"></th>
+                        <th>ID</th>
+                        <th>SKU</th>
+                        <th>Nombre del Producto</th>
+                        <th>Descripcion</th>
+                        <th>Fecha Creacion</th>
+                        <th>Fecha Update</th>
+                        <!-- Agrega más columnas según la estructura de tus datos -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let producto of productos">
+                        <td><input type="checkbox" [(ngModel)]="producto.selected"></td>
+                        <td>{{ producto.id }}</td>
+                        <td>{{ producto.sku }}</td>
+                        <td>{{ producto.nombre_producto }}</td>
+                        <td>{{ producto.descripcion }}</td>
+                        <td>{{ producto.created_at }}</td>
+                        <td>{{ producto.updated_at }}</td>
+                        <!-- Agrega más celdas según la estructura de tus datos -->
+                    </tr>
+                </tbody>
+            </table>
+
+
+            <a routerLink="/agregarProducto" class="btn-get-started scrollto">Agregar producto</a>
+            <a routerLink="/" class="btn-get-started scrollto">Editar producto</a>
+            <a class="btn-get-started scrollto" (click)="eliminarProductosSeleccionados()">Eliminar producto</a>
+
+
+        </div>
+
+        <a routerLink="/" class="btn-get-started scrollto">Volver</a>
+
+    </div>
+  </section><!-- End Hero -->
+

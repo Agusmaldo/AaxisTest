@@ -1,0 +1,60 @@
+/* En tu archivo de estilos (por ejemplo, styles.css o cualquier otro archivo de estilos que estés utilizando) */
+
+/* Estilo para centrar y espaciar la tabla */
+.centered-table {
+    margin: auto;
+    width: 80%; /* Puedes ajustar el ancho según tus necesidades */
+    padding: 20px;
+    background-color: #fff; /* Fondo blanco */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  }
+  
+  /* Estilo para la tabla y sus celdas */
+  .centered-table table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .centered-table th, .centered-table td {
+    border: 1px solid #ddd; /* Borde gris */
+    padding: 8px;
+    text-align: left;
+  }
+  
+  /* Estilo para las filas impares (opcional) */
+  .centered-table tbody tr:nth-child(odd) {
+    background-color: #f9f9f9; /* Fondo gris claro para filas impares */
+  }
+  
+  /* En tu archivo de estilos (por ejemplo, styles.css o cualquier otro archivo de estilos que estés utilizando) */
+
+/* Estilos para los botones */
+.btn-get-started {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 20px;
+    margin-right: 20px; 
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 25px; /* Bordes redondeados */
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease; /* Transiciones suaves */
+  
+    /* Estilo predeterminado del botón */
+    background-color: #3498db; /* Color azul claro */
+    color: #fff; /* Texto en blanco */
+    border: 2px solid #3498db; /* Borde del mismo color que el fondo inicial */
+    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3); /* Sombra suave inicial */
+  }
+  
+  /* Efecto hover para resaltar el botón */
+  .btn-get-started:hover {
+    background-color: #2980b9; /* Color azul un poco más oscuro al pasar el mouse */
+    color: #fff; /* Texto en blanco */
+    border-color: #2980b9; /* Borde del mismo color que el fondo al pasar el mouse */
+    box-shadow: 0 8px 20px rgba(41, 128, 185, 0.3); /* Sombra más pronunciada al pasar el mouse */
+  }
+  
