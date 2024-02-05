@@ -3,12 +3,12 @@ import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'app-navbar',
+  selector: 'app-footer',
   standalone: true,
   imports: [CommonModule, RouterLink],
-  templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.css'
+  templateUrl: './footer.component.html',
+  styleUrl: './footer.component.css'
 })
-export class NavbarComponent {
+export class FooterComponent {
 
 }

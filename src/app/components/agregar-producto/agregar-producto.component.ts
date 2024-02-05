@@ -45,11 +45,11 @@ export class AgregarProductoComponent implements OnInit {
     this.apiService.agregarProductos(this.producto).subscribe(
       (data) => {
         console.log('Producto guardado exitosamente:', data);
-        this.router.navigate(['/about']);
+        this.router.navigate(['/producto']);
       },
       (error) => {
         console.error('Error al guardar el producto:', error);
-        this.router.navigate(['/about']);
+        this.router.navigate(['/producto']);
       }
     );
   }

@@ -10,13 +10,13 @@ import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
-  selector: 'app-about',
+  selector: 'app-producto',
   standalone: true,
   imports: [CommonModule, HttpClientModule, RouterLink, FormsModule],
-  templateUrl: './about.component.html',
-  styleUrl: './about.component.css'
+  templateUrl: './producto.component.html',
+  styleUrl: './producto.component.css'
 })
-export class AboutComponent {
+export class productoComponent {
 
   productos: any[] = [];
   selectedProductos: any[] = [];
@@ -107,7 +107,7 @@ export class AboutComponent {
         (data) => {
           console.log('Productos eliminados exitosamente:', data);
           // Recargar la lista de productos después de eliminar
-          this.router.navigate(['/about']);
+          this.router.navigate(['/producto']);
           window.location.reload();
           this.hayProductoEliminado = true;
         },
@@ -115,7 +115,7 @@ export class AboutComponent {
           console.error('Error al eliminar productos:', error);
           // Manejar el error según sea necesario
           window.location.reload();
-          this.router.navigate(['/about']);
+          this.router.navigate(['/producto']);
         }
       );
     } else {

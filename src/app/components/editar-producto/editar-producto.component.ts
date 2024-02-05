@@ -49,11 +49,11 @@ export class EditarProductoComponent implements OnInit{
         this.ApiService.actualizarProducto(this.producto.sku, this.producto).subscribe(
           (response) => {
             console.log('Producto actualizado correctamente:', response);
-            this.router.navigate(['/about']);
+            this.router.navigate(['/producto']);
           },
           (error) => {
             console.error('Error al actualizar el producto:', error);
-            this.router.navigate(['/about']);
+            this.router.navigate(['/producto']);
           }
         );
       } else {
