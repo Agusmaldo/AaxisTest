@@ -17,11 +17,8 @@ export class ApiService {
 
       agregarProductos(productoData: any): Observable<any> {
         const url = `${this.baseUrl}/agregar-productos`;
-    
-        // Optional: You may need to set headers depending on your API requirements
         const headers = new HttpHeaders({
           'Content-Type': 'application/json',
-          // Add any other headers as needed
         });
     
         return this.httpClient.post(url, productoData, { headers });
@@ -33,10 +30,21 @@ export class ApiService {
       }
       
     
-      editarProducto(sku: string): Observable<any> {
-        // Implementa lógica para la edición según tus necesidades
-        return this.httpClient.put(`${this.baseUrl}/editar-producto/${sku}`, {});
+      editarProducto(producto: any) {
+        return this.httpClient.post(`${this.baseUrl}/editar-producto/${producto.sku}`, producto);
+      }      
+
+      actualizarProducto(sku: string, producto: any): Observable<any> {
+        console.log('Producto a actualizar:', producto);
+        const url = `${this.baseUrl}/editar-producto/${sku}`;
+        const headers = new HttpHeaders({
+          'Content-Type': 'application/x-www-form-urlencoded'
+        });
+      
+        return this.httpClient.put(url, producto, { headers });
       }
+      
+      
   
 
 }

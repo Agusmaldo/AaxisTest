@@ -1,0 +1,60 @@
+<!-- ======= Hero Section ======= -->
+<section id="hero" class="d-flex flex-column justify-content-center align-items-center">
+    <div class="container text-center text-md-left" data-aos="fade-up">
+      
+      <h2 class="text-center mb-4">Lista de Productos</h2>
+      <!-- En tu archivo de plantilla del componente -->
+      <div class="centered-table mt-5">
+        <div *ngIf="loading">Cargando productos...</div>
+        <div *ngIf="error">Error al obtener productos.</div>
+  
+        <div *ngIf="hayProductoSeleccionado === false" class="alert alert-warning">
+          Selecciona un producto para editar.
+        </div>
+
+        <div *ngIf="hayProductoEliminado === false" class="alert alert-warning">
+          Selecciona uno o más productos para eliminar
+        </div>
+
+        <table *ngIf="!loading && !error" class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th><input type="checkbox" (change)="selectAll($event)"></th>
+              <th>ID</th>
+              <th>SKU</th>
+              <th>Nombre del Producto</th>
+              <th>Descripcion</th>
+              <th>Fecha Creacion</th>
+              <th>Fecha Update</th>
+              <!-- Agrega más columnas según la estructura de tus datos -->
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let producto of productos">
+              <td><input type="checkbox" [(ngModel)]="producto.selected"></td>
+              <td>{{ producto.id }}</td>
+              <td>{{ producto.sku }}</td>
+              <td>{{ producto.nombre_producto }}</td>
+              <td>{{ producto.descripcion }}</td>
+              <td>{{ producto.created_at }}</td>
+              <td>{{ producto.updated_at }}</td>
+              <!-- Agrega más celdas según la estructura de tus datos -->
+            </tr>
+          </tbody>
+        </table>
+  
+        <div class="form-group row my-4 d-flex justify-content-center">
+          <div class="col-sm-10">
+            <a routerLink="/agregarProducto" class="btn btn-get-started scrollto">Agregar producto</a>
+            <a class="btn btn-get-started scrollto" (click)="editarProductosSeleccionados()">Editar producto</a>
+            <a class="btn btn-get-started scrollto" (click)="eliminarProductosSeleccionados()">Eliminar producto</a>
+          </div>
+        </div>
+  
+      </div>
+  
+      <a routerLink="/home" class="btn-get-started scrollto">Volver</a>
+  
+    </div>
+  </section><!-- End Hero -->
+  

@@ -1,11 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ApiService } from '../api.service';
+import { ApiService } from '../../services/api.service';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { RouterLink } from '@angular/router';
+import { NavigationExtras, RouterLink } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog'; 
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -21,10 +22,13 @@ export class AboutComponent {
   selectedProductos: any[] = [];
   loading = true;
   error = false;
+  hayProductoSeleccionado: boolean | null = null;
+  hayProductoEliminado: boolean | null = null;
 
   constructor(private apiService: ApiService,
     private dialog: MatDialog,
-    private router: Router) {}
+    private router: Router,
+    private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.apiService.listarProductos().subscribe(
@@ -93,6 +97,11 @@ export class AboutComponent {
       .filter(producto => producto.selected)
       .map(producto => producto.id);
 
+      if(idsSeleccionados){
+        this.hayProductoEliminado = false;
+        this.hayProductoSeleccionado = null;
+      }
+  
     if (idsSeleccionados.length > 0) {
       this.apiService.eliminarProductos(idsSeleccionados).subscribe(
         (data) => {
@@ -100,21 +109,44 @@ export class AboutComponent {
           // Recargar la lista de productos después de eliminar
           this.router.navigate(['/about']);
           window.location.reload();
+          this.hayProductoEliminado = true;
         },
         (error) => {
           console.error('Error al eliminar productos:', error);
           // Manejar el error según sea necesario
           window.location.reload();
           this.router.navigate(['/about']);
-          
         }
       );
     } else {
       console.warn('Ningún producto seleccionado para eliminar.');
+      this.hayProductoEliminado = false;
     }
   }
 
+  editarProductosSeleccionados(): void {
+    const productoSeleccionado = this.productos.find(producto => producto.selected);
+  
+    if (productoSeleccionado) {
+      this.hayProductoSeleccionado = true;
+      this.hayProductoEliminado = null;
+  
+      const navigationExtras: NavigationExtras = {
+        queryParams: { producto: JSON.stringify(productoSeleccionado) }
+      };
+  
+      this.router.navigate(['/editarProducto'], navigationExtras);
+    } else {
+      this.hayProductoSeleccionado = false;
+      this.hayProductoEliminado = null;
+      console.warn('Selecciona un producto para editar.');
+    }
+  }
+  
 
+  
+  
+  
 
 
 }
