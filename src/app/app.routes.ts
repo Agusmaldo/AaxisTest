@@ -7,7 +7,7 @@ import { AgregarProductoComponent } from './components/agregar-producto/agregar-
 import { EditarProductoComponent } from './components/editar-producto/editar-producto.component';
 
 export const routes: Routes = [
-    {'path': 'home', component: HomeComponent},
+    {'path': '', component: HomeComponent},
     {'path': 'about', component: AboutComponent},
     {'path': 'contact', component: ContactComponent},
     {'path': '', component: NavbarComponent},
