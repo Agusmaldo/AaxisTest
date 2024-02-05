@@ -125,9 +125,10 @@ export class productoComponent {
   }
 
   editarProductosSeleccionados(): void {
-    const productoSeleccionado = this.productos.find(producto => producto.selected);
-  
-    if (productoSeleccionado) {
+    const productosSeleccionados = this.productos.filter(producto => producto.selected);
+    
+    if (productosSeleccionados.length === 1) {
+      const productoSeleccionado = productosSeleccionados[0];
       this.hayProductoSeleccionado = true;
       this.hayProductoEliminado = null;
   
@@ -136,12 +137,17 @@ export class productoComponent {
       };
   
       this.router.navigate(['/editarProducto'], navigationExtras);
+    } else if (productosSeleccionados.length > 1) {
+      this.hayProductoSeleccionado = false;
+      this.hayProductoEliminado = null;
+      console.warn('No puedes seleccionar más de un producto simultaneamente');
     } else {
       this.hayProductoSeleccionado = false;
       this.hayProductoEliminado = null;
-      console.warn('Selecciona un producto para editar.');
+      console.warn('Selecciona un solo producto para editar.');
     }
   }
+  
   
 
   

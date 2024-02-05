@@ -19,9 +19,9 @@ export class AgregarProductoComponent implements OnInit {
   producto: Producto = {
     id: 0, 
     sku: '',
-    nombre: '',
+    nombre_producto: '',
     descripcion: '',
-    created_at: new Date().toISOString(),
+    created_at: '',
     updated_at: null,
     selected: false
   };
@@ -30,15 +30,11 @@ export class AgregarProductoComponent implements OnInit {
 
   ngOnInit() {
     const today = new Date();
-    today.setDate(today.getDate() - 1);
-  
-    const offset = today.getTimezoneOffset() / 60; 
-    today.setHours(today.getHours() - offset + 3);
-  
-    const formattedDate = today.toISOString().split('T')[0] + ' ' + today.toTimeString().split(' ')[0];
+
+    // Resta 3 horas a la fecha actual
+    today.setHours(today.getHours() - 3); //Restamos 3h porque Arg es UTF-3. (Otra forma de hacerlo)
+    const formattedDate = today.toISOString().slice(0, 19).replace("T", " ");
     this.producto.created_at = formattedDate;
-    this.producto.updated_at = formattedDate
-    console.log(this.producto.created_at);
   }
   
   guardarProducto(): void {    

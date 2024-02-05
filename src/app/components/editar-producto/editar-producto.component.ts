@@ -14,35 +14,31 @@ import { CommonModule } from '@angular/common';
 export class EditarProductoComponent implements OnInit{
 
   producto: any; // Puedes definir el tipo de 'producto' según tu modelo de datos
+  fechaActualFormateada: string;
 
   constructor(
     private ApiService: ApiService,
     private route: ActivatedRoute,
-    private router: Router) {}
+    private router: Router) {
+      this.fechaActualFormateada = this.obtenerFechaActualFormateada();
+    }
 
     ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       const productoSeleccionado = params['producto'] ? JSON.parse(params['producto']) : null;
 
-      console.log(productoSeleccionado);
-
       if (productoSeleccionado) {
-        const formattedDate = new Date(productoSeleccionado.created_at).toLocaleString();
-        const formattedUpdateDate = productoSeleccionado.updated_at ? new Date(productoSeleccionado.updated_at).toLocaleString() : null;
-
+       
         this.producto = {
           sku: productoSeleccionado.sku,
           nombre_producto: productoSeleccionado.nombre_producto,
           descripcion: productoSeleccionado.descripcion,
-          created_at: formattedDate,
-          updated_at: formattedUpdateDate
         };
       } else {
         console.warn('No se proporcionó un producto para editar.');
       }
     });
   }
-
 
   guardarProductoEditado(): void {
       if (this.producto.sku) {
@@ -60,4 +56,13 @@ export class EditarProductoComponent implements OnInit{
         console.warn('SKU del producto no válido.');
       }
     }
+
+  //Formateo la fecha
+  private obtenerFechaActualFormateada(): string {
+    const fechaActual = new Date();
+    const formattedDate = fechaActual.toLocaleString('es-AR', { timeZone: 'America/Argentina/Buenos_Aires' });
+
+    return formattedDate;
+  }
+
 }
